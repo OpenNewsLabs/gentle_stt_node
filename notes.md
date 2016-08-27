@@ -1,20 +1,19 @@
-# Gentle STT Node module 
 
-A gentle STT module to  connect to localhost version of gentle to be able to do offline transcriptions. For when the internet is too slow to use IBM, or when the material is too sensitive to be shared.
+## Context
 
-## Demo/context
+Meant to be be used with text based video editing tool, in alternative to IBM Watson speech to text. (separate project)
 
-https://db.tt/BNedAjt2 
+[Text Based video editing  - demo ](https://db.tt/BNedAjt2)
 
-click  `New` 
-then back to `Transcriptions`
-then the first transcription you see `Jesselyn Radack`
-you can try to select some text in whatever order you want
-then click `preview`  `selection order`
+- click  `New` 
+- then back to `Transcriptions`
+- then the first transcription you see `Jesselyn Radack`
+- you can try to select some text in whatever order you want
+- and click `Export`.
 
+## Implementation notes
 
-
-## Module that does the post request
+### Module that does the post request
 1.download DMG from gentle, and run local host version of app 
 https://lowerquality.com/gentle/
 
@@ -107,7 +106,7 @@ watsonTranscribe(demo_audio, keys,function(watsonSttJson){
 
 ```
 
-## Json response -> parsed to transcription specs 
+### Json response -> parsed to transcription specs 
 
 example  JSON returned by Gentle
 https://lowerquality.com/gentle/align.json
@@ -131,7 +130,6 @@ specs of Interactive transcription used by the system
                 },
                 ...
 ```
-
 
 
 

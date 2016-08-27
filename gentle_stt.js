@@ -3,31 +3,23 @@ var fs = require('fs');
 
 var url = "http://localhost:8765/transcriptions?async=false";
 
-//curl -F "audio=@norman_door_trimmed2.mp4.wav"  "http://localhost:8765/transcriptions?async=false"
-
-function send_to_watson(file, callback) {
-console.log("################# .send_to_watson")
-  fs.readFile(file, function(error, data) {
-    if (error) {
-      console.log(error);
-      return false;
-    }
-
+/**
+* Takes in file with absolute path. can use node module path to get absolute path of a file.
+*/
+function send_to_gentle(file, callback) {
+  
+console.log("Sending request to Gentle STT")
+  // fs.readFile(file, function(error, data) {
+  //   if (error) {
+  //     console.log(error);
+  //     return false;
+  //   }
     var options = {
       headers: {
         'Content-Type': 'multipart'
       },
-      // qs: {
-      //   timestamps: 'true',
-      //   continuous: 'true',
-      //   inactivity_timeout: '-1'
-      // },
-      // auth: {
-      //   user: keys.username,
-      //   pass: keys.password
-      // },
       formData: {
-        audio: fs.createReadStream(__dirname + '/norman_door_trimmed2.mp4.wav')
+        audio: fs.createReadStream(file)
       }
     };
 
@@ -40,19 +32,7 @@ console.log("################# .send_to_watson")
         callback(JSON.parse(body));
       }
     });
-  });
+  // });
 }
 
-module.exports = send_to_watson;
-
-////
-// var send_to_watson = require("./send_to_watson.js");
-
-var demo_audio  ="/Users/Asari/Desktop/transcription/norman_door_trimmed2.mp4.wav";
-
-
-
-send_to_watson(demo_audio,function(watsonSttJson){
-  // console.log("finished!!!!")
-  console.log(JSON.stringify(watsonSttJson, null, '\t'))
-})
+module.exports = send_to_gentle;

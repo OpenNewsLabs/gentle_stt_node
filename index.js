@@ -1,44 +1,23 @@
-var gentle = require("./package.json")
+var send_to_gentle = require("./gentle_stt.js");
+var gentleParser = require("./parse_gentle_stt.js")
 
-//console.log(JSON.stringify(gentle, null, 4))
-var lines = [];
 
-for (var i = 0; i<gentle.words.length; i++){
-	//console.log(JSON.stringify(gentle.words[i], null, 4))
-	var word = {};
-	console.log(i)
-	word.id = i;
-	word.text = gentle.words[i].alignedWord;
-	word.startTime = gentle.words[i].start;
-	word.endTime = gentle.words[i].end;
+function transcribe(audio, cb){
 
-	lines.push(word);
+	send_to_gentle(audio, function(gentleJson){
+	  // console.log("finished!!!!")
+	  // console.log(JSON.stringify(gentleJson, null, '\t'))
 
-	// console.log(JSON.stringify(gentle.words[i].alignedWord))
+	 var lines = gentleParser(gentleJson)
+	 
+		 if(cb){
+		 	cb(lines)
+		 }else{
+		 	return lines
+		 }
 
-	// console.log(JSON.stringify(gentle.words[i].start))
-	// console.log(JSON.stringify(gentle.words[i].end))
-	// console.log("---------")
+	})
+
 }
 
-
-console.log(JSON.stringify(lines, null, 4))
-
-
-
-// ```
-// [
-//         {
-//           "id": 0,
-//           "speaker": "Unamed Speaker 1",
-//           "paragraph": [
-//             {
-//               "line": [
-//                 {
-//                   "id": 0,
-//                   "text": "good",
-//                   "startTime": 0.1,
-//                   "endTime": 0.29
-//                 },
-//                 ...
-// ```
+module.exports = transcribe;
