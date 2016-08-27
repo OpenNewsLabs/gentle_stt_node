@@ -71,6 +71,7 @@ Future times, you just need to launch gentle anche check local host is working
 ```javascript
 var  transcribe =  require("./index.js")
 
+//takes in fiel as absolute path, use node module `path` if you need to figure out out.
 var demo_audio  ="#yourFile.wav";
 
 transcribe(demo_audio, function(resp){
@@ -80,10 +81,25 @@ transcribe(demo_audio, function(resp){
 
 ```
 
+## TODO
+
+add usefull error message if server(gentle) is offline
+
+
+response if server is online
+```
+{ [Error: connect ECONNREFUSED 127.0.0.1:8765]
+  code: 'ECONNREFUSED',
+  errno: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8765 }
+```
+
 ## Contributors
 
-Initially developed at Hacks/Hackers Buenos Aires Media Party 
+Initially developed at Hacks/Hackers Buenos Aires Media Party 2016
 
-[Pietro Passarelli](http://github.com/pietrop)
-[Martin Shelton](http://github.com/martinshelton)
-[Dan Zajdband](http://github.com/impronunciable)
+- [Pietro Passarelli](http://github.com/pietrop)
+- [Martin Shelton](http://github.com/martinshelton)
+- [Dan Zajdband](http://github.com/impronunciable)
