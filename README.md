@@ -86,7 +86,8 @@ transcribe(demo_audio, function(resp){
 add usefull error message if server(gentle) is offline
 
 
-response if server is online
+response if server is offline is 
+
 ```
 { [Error: connect ECONNREFUSED 127.0.0.1:8765]
   code: 'ECONNREFUSED',
